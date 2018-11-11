@@ -1,0 +1,5 @@
+server:
+  port: 48070
+spring:
+  application:
+    name: goods-service

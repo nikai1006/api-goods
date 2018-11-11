@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.nikai</groupId>
+  <artifactId>goods-service</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>${artifactId}</name>
+  <description>Demo project for Spring Boot</description>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.0.5.RELEASE</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+    <java.version>1.8</java.version>
+    <api.scan.base.packages>com.nikai.goods.controller</api.scan.base.packages>
+    <spi.scan.base.packages>com.nikai.goods.dto</spi.scan.base.packages>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.jiatui.spi</groupId>
+      <artifactId>spi</artifactId>
+      <version>LATEST</version>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
+
+  <profiles>
+    <profile>
+      <id>api-doc</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+        <javadoc.option.params>url=http://localhost:18000/api-data/collect/;spring.application.name=${artifactId}</javadoc.option.params>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.0.1</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <subpackages>${api.scan.base.packages}:;${javadoc.option.params}</subpackages>
+              <show>private</show>
+              <nohelp>true</nohelp>
+              <doclet>org.and.api.doclet.ControllerDocProcessor</doclet>
+              <docletArtifact>
+                <groupId>org.and.api</groupId>
+                <artifactId>api-doc-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+              </docletArtifact>
+              <useStandardDocletOptions>false</useStandardDocletOptions>
+              <encoding>UTF-8</encoding>
+              <docencoding>UTF-8</docencoding>
+              <breakiterator>true</breakiterator>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>spi-doc</id>
+      <activation>
+        <activeByDefault>false</activeByDefault>
+      </activation>
+      <properties>
+
+        <javadoc.option.params>url=http://localhost:18000/spi-data</javadoc.option.params>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>3.0.1</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <subpackages>${spi.scan.base.packages}:;${javadoc.option.params}</subpackages>
+              <show>private</show>
+              <nohelp>true</nohelp>
+              <doclet>org.and.api.doclet.SpiDocProcessor</doclet>
+              <docletArtifact>
+                <groupId>org.and.api</groupId>
+                <artifactId>api-doc-plugin</artifactId>
+                <version>1.0.0-SNAPSHOT</version>
+              </docletArtifact>
+              <useStandardDocletOptions>false</useStandardDocletOptions>
+              <encoding>UTF-8</encoding>
+              <docencoding>UTF-8</docencoding>
+              <breakiterator>true</breakiterator>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+</project>
