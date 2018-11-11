@@ -26,6 +26,7 @@ public class GoodsController {
      * @return 商品列表
      * @service 查询所有商品信息
      * @scene 小程序
+     * @domain GOODS
      * @type QUERY
      * @code 0#成功
      * @code 1#系统异常
@@ -46,6 +47,7 @@ public class GoodsController {
      * @return 商品列表
      * @service 分页查询所有商品信息
      * @scene 小程序
+     * @domain GOODS
      * @type QUERY
      * @code 0#成功
      * @code 1#系统异常
@@ -65,6 +67,7 @@ public class GoodsController {
      * @service 根据商品ID查询所有商品信息
      * @scene 小程序
      * @type QUERY
+     * @domain GOODS
      * @param id 商品id
      * @code 0#成功
      * @code 1#系统异常
@@ -84,6 +87,7 @@ public class GoodsController {
      * @service 新增商品
      * @scene 小程序
      * @type COMMAND
+     * @domain GOODS
      * @param goods 商品信息
      * @code 0#成功
      * @code 1#系统异常
@@ -122,6 +126,7 @@ public class GoodsController {
      * @service 删除商品
      * @scene 小程序
      * @type COMMAND
+     * @domain GOODS
      * @param goods 商品信息
      * @code 0#成功
      * @code 1#系统异常
